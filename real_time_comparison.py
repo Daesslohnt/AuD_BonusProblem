@@ -4,7 +4,7 @@ from knuth_morris_pratt import find_kmp
 
 import time
 
-T = """
+"""
 Die QCD ist wie die Quantenelektrodynamik (QED) eine Eichtheorie. Während die QED jedoch auf
  der abelschen Eichgruppe U(1) beruht und die Wechselwirkung elektrisch geladener Teilchen 
  (z. B. Elektron oder Positron) mit Photonen beschreibt, wobei die Photonen selbst ungeladen 
@@ -58,23 +58,36 @@ beruht (Pion-Austauschmodell). Die Beschreibung des Verhaltens der Nukleonen üb
 im Atomkern und in Streuexperimenten ist Gegenstand der Kernphysik.
 """
 
-P = "Streuexperimenten"
+P = "Hello World!"
 
-# brute force algorithm
-start_time = int(round(time.time() * 1000))
-print(find_brute(T, P))
-end_time = int(round(time.time() * 1000))
-complete_time = end_time - start_time
-print("brute: ", complete_time)
+file_names = ["bigfile.txt", "law.txt", "lorem_ipsum.txt", "lorem_ipsum_large.txt", "shakespeare.txt"]
+for file_name in file_names:
+    with open("bigfile.txt", "r") as f:
+        T = f.read()
 
-start_time = int(round(time.time() * 1000))
-print(find_kmp(T, P))
-end_time = int(round(time.time() * 1000))
-complete_time = end_time - start_time
-print("KMP: ", complete_time)
+    print("\n", file_name)
 
-start_time = int(round(time.time() * 1000))
-print(find_boyer_moore(T, P))
-end_time = int(round(time.time() * 1000))
-complete_time = end_time - start_time
-print("Boyer Moore: ", complete_time)
+    # brute force algorithm
+    start_time = int(round(time.time() * 1000))
+    start_time = time.time_ns()
+    print(find_brute(T, P))
+    end_time = int(round(time.time() * 1000))
+    end_time = time.time_ns()
+    complete_time = (end_time - start_time) / 1_000_000
+    print("brute:\t\t\t", complete_time, "ms")
+
+    start_time = int(round(time.time() * 1000))
+    start_time = time.time_ns()
+    print(find_kmp(T, P))
+    end_time = int(round(time.time() * 1000))
+    end_time = time.time_ns()
+    complete_time = (end_time - start_time) / 1_000_000
+    print("KMP:\t\t\t", complete_time, "ms")
+
+    start_time = int(round(time.time() * 1000))
+    start_time = time.time_ns()
+    print(find_boyer_moore(T, P))
+    end_time = int(round(time.time() * 1000))
+    end_time = time.time_ns()
+    complete_time = (end_time - start_time) / 1_000_000
+    print("Boyer Moore:\t", complete_time, "ms")
