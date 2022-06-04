@@ -58,11 +58,11 @@ beruht (Pion-Austauschmodell). Die Beschreibung des Verhaltens der Nukleonen üb
 im Atomkern und in Streuexperimenten ist Gegenstand der Kernphysik.
 """
 
-P = "Hello World!"
+P = "qweq"
 
 file_names = ["bigfile.txt", "law.txt", "lorem_ipsum.txt", "lorem_ipsum_large.txt", "shakespeare.txt"]
 for file_name in file_names:
-    with open("bigfile.txt", "r") as f:
+    with open(file_name, "r", encoding='utf-8') as f:
         T = f.read()
 
     print("\n", file_name)
