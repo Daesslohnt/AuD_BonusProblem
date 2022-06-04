@@ -16,24 +16,24 @@ die Matrikelnummern: 22107862; 00821114;22100539;  22107861; }
 
 
 \section{Einleitung}
-Im folgenden Bericht werden wir erklären, wie sich Mustererkennungsalgorithmen unterscheiden. Dafür werden wir insbesondere auf brute-force, KMP und Boyer-Moore eingehen und verschiedene Vor- und Nachteile aufzeigen.\\
+Im folgenden Bericht werden wir darstellen, wie sich Mustererkennungsalgorithmen unterscheiden. Dafür werden wir insbesondere auf Brute-Force, KMP und Boyer-Moore eingehen und verschiedene Vor- und Nachteile aufzeigen.\\
 
-Das Problem in unserem Beispiel der Mustererkennung ist, dass wir einen bestimmten String in Form eines Textes der Länge n haben und innerhalb dieses Strings einen Muster-String suchen, welcher Teil des Textes sein soll. Unsere Mustererkennungsalgorithmen haben nun die Aufgabe, möglichst schnell und effizient den gesuchten String zu finden. Diese Mustererkennung wird aktuell beispielsweise in PDFs oder verschiedenen Websites angewendet, wodurch man die Seite nach bestimmten Wörtern durchsuchen kann. Wie genau diese suche funktioniert und was die einzelnen Mustererkennungsalgorithmen machen, wird in den folgenden Teilen thematisiert.
+Das Problem in unserem Beispiel der Mustererkennung ist, dass wir einen bestimmten String in Form eines Textes der Länge n haben und innerhalb dieses Strings einen Muster-String suchen, welcher Teil des Textes sein soll. Unsere Mustererkennungsalgorithmen haben nun die Aufgabe, möglichst schnell und effizient den gesuchten String zu finden. Diese Mustererkennung wird aktuell beispielsweise in PDFs oder verschiedenen Websites angewendet, um die Seite nach bestimmten Wörtern zu durchsuchen. Wie genau diese Suche funktioniert und was die einzelnen Mustererkennungsalgorithmen machen, wird in den folgenden Teilen thematisiert.
 
 \section{Algorithmen}
 \subsection{Brute-Force}
 
-Das Brute-Force-Entwurfsmuster für Algorithmen ist eine leistungsstarke Technik für den Entwurf von Algorithmen, wenn wir etwas suchen oder eine Funktion optimieren wollen. Bei der Anwendung dieser Technik in einer allgemeinen Situation werden normalerweise möglichen Konfigurationen der beteiligten Eingaben aufgezählt und die beste von allen dieser aufgezählten Konfigurationen ausgewählt.
+Das Brute-Force-Entwurfsmuster für Algorithmen ist eine leistungsstarke Technik für den Entwurf von Algorithmen, wenn wir etwas suchen oder eine Funktion optimieren wollen. Bei der Anwendung dieser Technik in einer allgemeinen Situation werden alle möglichen Anordnungen der beteiligten Eingaben aufgezählt und die beste von allen diesen Konfigurationen ausgewählt.
 
 \subsubsection{Laufzeit}
-Die Laufzeit des Brute-Force-Mustervergleichs ist im schlimmsten Fall nicht gut, da wir für jeden Kandidatenindex in T bis zu m Zeichenvergleiche durchführen können, um herauszufinden, dass P im aktuellen Index nicht mit T übereinstimmt. Die äußere for-Schleife wird höchstens n-m+1 Mal und die innere while-Schleife höchstens m Mal ausgeführt. Somit ist die Worst-Case Zeitkomplexität der Brute-Force-Methode ist also O(nm).
+Die Laufzeit des Brute-Force-Mustervergleichs ist im schlimmsten Fall sehr schlecht, da wir für jeden Kandidatenindex im Text T bis zu m Zeichenvergleiche durchführen können, um herauszufinden, dass P im aktuellen Index nicht mit T übereinstimmt. Die äußere for-Schleife wird bis zu n-m+1 Mal und die innere while-Schleife höchstens bis zu m Mal ausgeführt. Somit ist die Worst-Case Zeitkomplexität der Brute-Force-Methode also O(nm).
 
 \subsection{Knuth-Morris-Pratt}
+Der Knuth-Morris-Pratt (oder "KMP") Algorithmus versucht, durch Vorwissen über den String die nächsten Charaktere im Such-String zu überspringen. So kann, wenn bei der Suche nach "kokosnuss" am Index 5 eine Nicht-Übereinstimmung auftritt, sicher angenommen werden, dass eine Verschiebung des Match-Strings um nur 1 ein "k" mit einem "o" verglichen werden wird. Bei einer Verschiebung um 2 kann eine Nicht-Übereinstimmung
+nicht mehr ausgeschlossen werden, sodass wir die Suche an dieser Stelle fortsetzen müssen. Diese Vorgehensweise führt zu einer Zeitkomplexität von O(n+m).
 
-Der Knuth-Morris-Pratt (oder "KMP") Algorithmus vermeidet die Informationsverschwendung und erreicht dabei eine Zeitkomplexität von O(n+m), was asymptotisch optimal ist. Das heißt, dass im schlimmsten Fall jeder Mustervergleichsalgorithmus alle Zeichen des Textes und alle Zeichen des Musters mindestens einmal untersuchen. Die Hauptidee des KMP-Algorithmus ist die Vorberechnung von Selbstüberschneidungen zwischen Teilen des Musters vorzuberechnen, so dass wir, wenn eine Fehlübereinstimmung an einer Stelle auftritt, wissen wir sofort, um wie viel das Muster maximal verschoben werden muss bevor die Suche fortgesetzt wird.
 \subsubsection{Fehlerfunktion}
-Um den KMP-Algorithmus zu implementieren, berechnen wir im Voraus eine Fehlerfunktion, f, die die richtige Verschiebung von P bei einem fehlgeschlagenen Vergleich angibt. Konkret ist die Fehlerfunktion f (k) definiert als die Länge des längsten Präfixes von P, das ein Suffix von P[1:k+1] ist (beachten Sie, dass wir P[0] hier nicht berücksichtigt haben, da wir mindestens eine Einheit). Intuitiv ausgedrückt: Wenn wir eine Nichtübereinstimmung beim Zeichen P[k+1] finden, sagt uns die Funktion f (k) an, wie viele der unmittelbar vorangehenden Zeichen wiederverwendet werden können, um das Muster neu zu starten.
-
+Diese Fehlerfunktion kann für jeden String im vorraus berechnet werden. Diese Funktion gibt für jeden Index k, an dem eine Nicht-Übereinstimmung auftritt, die Anzahl der Zeichen zurück, die übersprungen werden können. Dieser Wert ist jeweils die Länge des grössten Präfixes, dass ein Suffix des Substrings der Länge k ist.
 
 \subsection{Boyer – Moore Algorithmus}
 Der Boyer-Moore Mustererkennungsalgorithmus kann Vergleiche zwischen einem Muster P und einem Bruchteil der Buchstaben in einem Text T vermeiden. In diesem Teil wird eine vereinfachte Version des Original Algorithmus von Boyer und Moore beschrieben.
@@ -47,7 +47,7 @@ Die zweite Heuristik ist die Character-Jump Heuristic. Während eine mögliche P
 
 
 \section{Textbeschreibung}
-In dieser Untersuchung wurde ein dutzende Menge von Textdateien genutzt:\\
+In dieser Untersuchung wurden fünf Textdateien genutzt:\\
 
 \begin{enumerate}
 \item bigfile.txt ist eine 10.000.000 Zeichen große Datei an zufälligen Buchstaben und Ziffern.
@@ -61,19 +61,19 @@ In dieser Untersuchung wurde ein dutzende Menge von Textdateien genutzt:\\
 \end{enumerate}
 
 \section{Die Präsentation der Ergebnisse}
-Alle 3 Algorithmen wurden nach ihrer tatsächlichen Laufzeit geprüft. Hiermit sind die Ergebnisse in der Tabelle  \ref{Ergebnisse} zusammengefasst. 
+Bei allen drei Algorithmen wurde die tatsächliche Laufzeit überprüft. Die Ergebnisse in sind der Tabelle 1 zusammengefasst. 
 
 
 \begin{table}[h]
 \begin{tabular}{ |c|c|c|c|c|c| }
 \hline
-  & bigfile & law & LI & LI-Large & Shakespear \\
+  & bigfile & law & LI & LI-Large & Shakespeare \\
 \hline 
- brute-force & 746.259 ms & 745.166 ms & 1338.482 ms& 1279.951462 ms & 1279.49429 ms\\ 
+ brute-force & 1647.72 ms & 53.01 ms & 125.04 ms& 348.18 ms & 905.94 ms\\ 
 \hline
- KMP & 675.9925 ms & 1123.231 ms & 1160.338 ms & 1162.29496 ms & 1157.80158 ms\\ 
+ KMP & 1379.80 ms & 41.01 ms & 112.02 ms & 303.05 ms & 817.72 ms\\ 
 \hline
- Boyer-Moore & 185.786 ms & 330.1709 ms & 288.56 ms & 288.25984 ms & 291.605437 ms\\ 
+ Boyer-Moore & 1062.24 ms & 34.01 ms & 97.02 ms & 233.07 ms & 612.19 ms\\ 
 \hline
 \end{tabular}
 \label{Ergebnisse}
@@ -81,5 +81,5 @@ Alle 3 Algorithmen wurden nach ihrer tatsächlichen Laufzeit geprüft. Hiermit s
 \end{table}
 
 
-Aufgrund der erhobenen Angaben können wir schließen, dass die beste Ergebnisse derBoyer-Moore Algorithmus liefert. Wie erwartet die schlechteste Ergebnisse zeigt Brute-Force Algorithmus. Es muss darauf hingewiesen werden, dass KMP Algorithmus kein bedeutender Fortschritt im Vergleich zu Brute-Force ist, da die Laufzeit ziemlich nah zu einander steht. Darüber hinaus liefert KMP bei dem Testtext "law" noch schlimmere Laufzeit als beim Brute-Force.     
+Aufgrund der erhobenen Angaben können wir schließen, dass der Boyer-Moore Algorithmus die besten Ergebnisse liefert. Der Brute-Force Algorithmus besitzt die schlechteste Laufzeit. Es muss darauf hingewiesen werden, dass KMP Algorithmus kein bedeutender Fortschritt im Vergleich zu Brute-Force ist, da die Laufzeiten sich in der Anwendung nicht signifikant unterscheiden.
 \end{document}
