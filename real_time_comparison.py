@@ -74,7 +74,7 @@ for file_name in file_names:
     end_time = int(round(time.time() * 1000))
     end_time = time.time_ns()
     complete_time = (end_time - start_time) / 1_000_000
-    print("brute:\t\t\t", complete_time, "ms")
+    print(f"brute:\t\t\t {complete_time} ms")
 
     start_time = int(round(time.time() * 1000))
     start_time = time.time_ns()
@@ -82,7 +82,7 @@ for file_name in file_names:
     end_time = int(round(time.time() * 1000))
     end_time = time.time_ns()
     complete_time = (end_time - start_time) / 1_000_000
-    print("KMP:\t\t\t", complete_time, "ms")
+    print(f"KMP:\t\t\t {complete_time} ms")
 
     start_time = int(round(time.time() * 1000))
     start_time = time.time_ns()
@@ -90,4 +90,4 @@ for file_name in file_names:
     end_time = int(round(time.time() * 1000))
     end_time = time.time_ns()
     complete_time = (end_time - start_time) / 1_000_000
-    print("Boyer Moore:\t", complete_time, "ms")
+    print(f"Boyer Moore:\t {complete_time} ms")
