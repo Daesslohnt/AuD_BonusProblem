@@ -61,7 +61,7 @@ In dieser Untersuchung wurden fünf Textdateien genutzt:\\
 \end{enumerate}
 
 \section{Die Präsentation der Ergebnisse}
-Bei allen drei Algorithmen wurde die tatsächliche Laufzeit überprüft. Die Ergebnisse in sind der Tabelle 1 zusammengefasst. 
+Bei allen drei Algorithmen wurde die tatsächliche Laufzeit überprüft. Die Ergebnisse in sind der Tabellen 1, 2 und 3 zusammengefasst. Die Angaben sind bis 2 Nachkommastellen gerundet
 
 
 \begin{table}[h]
@@ -77,11 +77,48 @@ Bei allen drei Algorithmen wurde die tatsächliche Laufzeit überprüft. Die Erg
 \hline
 \end{tabular}
 \label{Ergebnisse}
-\caption{ Ergebnisse der Laufzeit}
+\caption{ Ergebnisse der Laufzeit Rechner 1}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{ |c|c|c|c|c|c| }
+\hline
+  & bigfile & law & LI & LI-Large & Shakespeare \\
+\hline 
+ brute-force & 1148.25 ms &33.91 ms & 83.77 ms& 238.91 ms & 606.21 ms\\ 
+\hline
+ KMP & 1090.51 ms & 30.96 ms & 75.8 ms & 223.59 ms & 548.11 ms\\ 
+\hline
+ Boyer-Moore & 717.6508 ms & 22.93 ms & 53.87 ms & 157.07 ms & 403.12 ms\\ 
+\hline
+\end{tabular}
+\label{Ergebnisse}
+\caption{ Ergebnisse der Laufzeit Rechner 2}
 \end{table}
 
 
-Aufgrund der erhobenen Angaben können wir schließen, dass der Boyer-Moore Algorithmus die besten Ergebnisse liefert. Der Brute-Force Algorithmus besitzt die schlechteste Laufzeit. Es muss darauf hingewiesen werden, dass KMP Algorithmus kein bedeutender Fortschritt im Vergleich zu Brute-Force ist, da die Laufzeiten sich in der Anwendung nicht signifikant unterscheiden.
+
+
+\begin{table}[h]
+\begin{tabular}{ |c|c|c|c|c|c| }
+\hline
+  & bigfile & law & LI & LI-Large & Shakespeare \\
+\hline 
+ brute-force & 2190.49 ms &66.02 ms & 155.04 ms& 438.51 ms & 1148.26 ms\\ 
+\hline
+ KMP & 1868.28 ms & 57.013 ms & 132.03 ms & 407.76 ms & 977.22 ms\\ 
+\hline
+ Boyer-Moore & 1479.33 ms & 47.0103 ms & 110.91 ms & 327.07 ms & 810.18 ms\\ 
+\hline
+\end{tabular}
+\label{Ergebnisse}
+\caption{ Ergebnisse der Laufzeit Rechner 3}
+\end{table}
+
+
+
+
+Aufgrund der erhobenen Angaben können wir schließen, dass der Boyer-Moore Algorithmus die besten Ergebnisse liefert. Drüber hinaus wurde die Tatsache bestätigt, dass der Boyer-Moore Algorithmus unabhängig von einem Rechner effizienter ist. Der Brute-Force Algorithmus besitzt die schlechteste Laufzeit. Es muss darauf hingewiesen werden, dass KMP Algorithmus kein bedeutender Fortschritt im Vergleich zu Brute-Force ist, da die Laufzeiten sich in der Anwendung nicht signifikant unterscheiden.
 
 \section{Fazite und Perspektive}
 Der Boyer-Moore Algorithmus war bei den verschiedenen Tests immer der Beste. Daraus können wir schließen, dass  der Boyer-Moore Algorithmus, abgesehen von der Größe der Textdateien, im Durchschnitt immer schneller ist. 
